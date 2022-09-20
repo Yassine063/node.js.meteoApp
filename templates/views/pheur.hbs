@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+  <title>MéteoWiki</title>
+
+</head>
+
+<body style="background-color: rgb(226, 221, 193);">
+
+  <script src="bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+
+  {{>header}}
+  {{#each ville}}
+  <table class="table">
+
+    <thead>
+      <tr>
+          <p class="fw-lighter fs-6" style="color: rgb(26, 91, 94);">Dernier observation: {{current_condition.[0].localObsDateTime}}</p>
+      
+      </tr>
+      <tr>
+       <span class="fw-bold "  style="color:rgb(64, 107, 29)">{{nearest_area.[0].areaName.[0].value}},{{nearest_area.[0].region.[0].value}},
+                        {{nearest_area.[0].country.[0].value}}</span>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th scope="row">Temps</th>
+        {{#each weather.[0].hourly}}
+
+        <td>{{formatheure time}}h:00  </td>
+
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row">Température</th>
+        {{#each weather.[0].hourly}}
+
+        <td>{{tempC}} °C (Res{{FeelsLikeC}}) </td>
+
+        {{/each}}
+      </tr>
+      <tr>
+        <th scope="row">Conditions </th>
+        {{#each weather.[0].hourly}}
+
+        <td>{{weatherDesc.[0].value}} </td>
+        {{/each}}
+      </tr>
+      <th scope="row">Vents</th>
+      {{#each weather.[0].hourly}}
+
+      <td>{{windspeedKmph}} Km/h </td>
+
+      {{/each}}
+      </tr>
+
+      <tr>
+        <th scope="row">Visibilité</th>
+
+        {{#each weather.[0].hourly}}
+
+        <td>{{visibility}} Km</td>
+
+        {{/each}}
+      </tr>
+<tr>
+      <th scope="row">UV</th>
+      {{#each weather.[0].hourly}}
+
+      <td>{{uvIndex}} </td>
+
+      {{/each}}
+      </tr>
+      <tr>
+      <th scope="row">humidity</th>
+      {{#each weather.[0].hourly}}
+
+      <td>{{humidity}} </td>
+
+      {{/each}}
+      </tr>
+      <tr>
+      <th scope="row">Précipitations</th>
+
+      {{#each weather.[0].hourly}}
+
+      <td>{{precipMM}} mm </td>
+
+      {{/each}}
+      </tr>
+
+    </tbody>
+  </table>
+  {{/each}}
+  <script src="index.js"></script>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  {{>footer}}
+
+
+</body>
+
+</html>
